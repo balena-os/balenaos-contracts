@@ -1,0 +1,48 @@
+{
+  "slug": "balenaos",
+  "type": "sw.os",
+  "name": "Balena OS",
+  "version": "1.0.0",
+  "externalVersion": "2.69.4+rev4",
+  "partitionTable": {
+    "type": "msdos",
+    "units": "KiB",
+    "partitions": {
+      "balena-boot": {
+        "type": "fat32",
+        "offset": 4096,
+        "alignment": 4096,
+        "bootable": "1",
+        "size": 40960
+      },
+      "balena-rootA": {
+        "type": "ext4",
+        "alignment": 4096,
+        "size": 319488
+      },
+      "balena-rootB": {
+        "type": "ext4",
+        "alignment": 4096,
+        "size": 319488
+      },
+      "balena-state": {
+        "type": "ext4",
+        "alignment": 4096,
+        "size": 20480
+      },
+      "balena-data": {
+        "type": "ext4",
+        "alignment": 4096,
+        "size": 196608
+      }
+    }
+  },
+  "requires": [
+    {
+      "anyOf": [
+        { "type": "hw.device-type", "slug": "jetson-tx2" },
+        { "type": "hw.device-type", "slug": "raspberrypi4-64" }
+      ]
+    }
+  ]
+}
