@@ -8,7 +8,8 @@
       "anyOf": [
         { "type": "hw.device-type", "slug": "ccimx8x-sbc-pro" },
         { "type": "hw.device-type", "slug": "raspberrypi4-64" },
-        { "type": "hw.device-type", "slug": "genericx86-64-ext" }
+        { "type": "hw.device-type", "slug": "genericx86-64-ext" },
+        { "type": "hw.device-type", "slug": "jetson-tx2" }
       ],
       "allOf": [
         { "type": "sw.package", "slug": "linux-firmware" }
