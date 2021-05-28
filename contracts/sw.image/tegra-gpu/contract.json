@@ -9,9 +9,27 @@
         { "type": "hw.device-type", "slug": "jetson-tx2" },
         { "type": "hw.device-type", "slug": "jetson-nano" }
       ],
-      "allOf": [
-        { "type": "sw.package", "slug": "tegra-libraries" }
+      "allOf" : [
+	      { "type": "sw.os", "slug": "yocto", "externalVersion": "dunfell"},
+	      { "type": "sw.os", "slug": "balenaos", "externalVersion": "2.x"}
       ]
     }
+  ],
+  "composedOf": [
+	  { "type": "sw.recipe.yocto", "slug": "tegra-libraries"},
+	  { "type": "sw.recipe.yocto", "slug": "libglvnd"},
+	  { "type": "sw.recipe.yocto", "slug": "libtirpc"},
+	  { "type": "sw.recipe.yocto", "slug": "libcap"},
+	  { "type": "sw.recipe.yocto", "slug": "elfutils"},
+	  { "type": "sw.package.yocto.ipk", "slug": "libelf"},
+	  { "type": "sw.package.yocto.ipk", "slug": "tegra-libraries-argus"},
+	  { "type": "sw.package.yocto.ipk", "slug": "tegra-libraries-argus-daemon-base"},
+	  { "type": "sw.package.yocto.ipk", "slug": "tegra-libraries-container-csv"},
+	  { "type": "sw.package.yocto.ipk", "slug": "tegra-libraries-libnvosd"},
+	  { "type": "sw.package.yocto.ipk", "slug": "tegra-libraries-libv4l-plugins"},
+	  { "type": "sw.recipe.yocto", "slug": "libnvidia-container-tools"},
+	  { "type": "sw.recipe.yocto", "slug": "nvidia-container-toolkit"},
+	  { "type": "sw.recipe.yocto", "slug": "nvidia-container-runtime"},
+	  { "type": "sw.recipe.yocto", "slug": "go-runtime"}
   ]
 }
