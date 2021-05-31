@@ -1,4 +1,54 @@
 - commits:
+    - subject: 'README: Add contract type description'
+      hash: 07eee3c790d30451df33dfb8d6ebd53ee04b9a5c
+      body: |
+        Add a brief paragraph to describe how to define images.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+    - subject: 'tegra-gpu: Merge package an image to simplify image definition'
+      hash: 0a5d9390c3d89ad8440d368581d3acd78c52744c
+      body: >
+        When building images we need a recipe list for bitbake, and a package
+
+        list for the package manager. This can both be defined by using
+        different
+
+        types, `sw.recipe.yocto` or `sw.package.yocto` and the sw.package type
+
+        can be removed to simplify.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+    - subject: 'linux-firmware: Merge package an image to simplify image definition'
+      hash: 84dc959b11c6bdb1b610b22eaeebca72962f3b8e
+      body: >
+        When building images we need a recipe list for bitbake, and a package
+
+        list for the package manager. This can both be defined by using
+        different
+
+        types, `sw.recipe.yocto` or `sw.package.yocto` and the sw.package type
+
+        can be removed to simplify.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+  version: 1.0.0
+  date: 2021-05-31T08:37:40.244Z
+- commits:
     - subject: 'versionist: Add repo.yml to make versionist happy'
       hash: 2c51ff998d9082b88daf7710cb502a89752e903d
       body: |
