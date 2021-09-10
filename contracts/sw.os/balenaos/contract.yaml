@@ -1,0 +1,64 @@
+slug: balenaos
+name: balena OS
+version: 1.0.0
+externalVersion: 2.83.1
+description: >-
+  BalenaOS is a lightweight embedded OS tailored for containers
+type: sw.os
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balenaos/meta-balena'
+  logo:
+    type: blob.asset
+    data:
+      url: 'https://raw.githubusercontent.com/balenaos/meta-balena/master/logo.png'
+data:
+  blocks: &osBlocks
+    - slug: linux-firmware
+      type: sw.image
+      version: 1.0.0
+    - slug: balena-supervisor
+      type: sw.image
+      version: 12.10.10
+
+  installationInstructions:
+    <<: *osInstallationInstructions
+
+  yocto:
+    image: balena-image
+    fstype: balenaos-img
+    version: dunfell
+    compressed: true
+
+  defaultPartition: &defaultPartition
+    type: ext4
+    offset: 0
+    alignment: 4096
+    size: 0
+    bootable: 0
+  partitionTable:
+    - type: gpt
+    - units: KiB
+    - partitions:
+      - balena-boot:
+        <<: *defaultPartition
+        type: fat32
+        offset: 4096
+        bootable: 1
+        size: 40960
+      - balena-rootA:
+        <<: *defaultPartition
+        size: 319488
+      - balena-rootB:
+        <<: *defaultPartition
+        size: 319488
+      - balena-state:
+        <<: *defaultPartition
+        size: 20480
+      - balena-data:
+        <<: *defaultPartition
+
+  supportedDeviceTypes:
+    <<: *releasedDeviceTypes
