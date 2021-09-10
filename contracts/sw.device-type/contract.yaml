@@ -1,0 +1,45 @@
+# templates
+# From device type contract
+deviceTypeName: template
+deviceTypeDescription: template
+deviceTypeArchitecture: template
+deviceTypeInstallationInstructions: template
+deviceTypeReleasedState: template
+deviceTypeRepositotyURL: template
+deviceTypeLogoURL: template
+# From OS contract
+osYocto: template
+osYoctoImage: template
+osYoctoFstype: template
+osPartitionTable: template
+
+slug: *deviceTypeName
+aliases: [ *deviceTypeName ]
+name: *deviceTypeDescription
+arch: *deviceTypeArchitecture
+state: *deviceTypeReleasedState
+version: 1.0.0
+externalVersion: 2.83.1+rev1
+description: >-
+  BalenaOS support for *deviceTypeDescription boards
+type: sw.os
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: *deviceTypeRepositotyURL
+  logo:
+    type: blob.asset
+    data:
+      url: *deviceTypeLogoURL
+data:
+  installationInstructions:
+    <<: *deviceTypeInstallationInstructions
+
+  yocto:
+    <<: *osYocto
+    machine: *deviceTypeName
+    deployArtifact: *osYoctoImage - *deviceTypeName - . - *osYoctoFstype
+
+  partitionTable:
+    <<: *osPartitionTable
