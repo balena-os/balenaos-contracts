@@ -4,6 +4,11 @@ Change log
 # v0.0.2
 ## (2021-05-27)
 
+# v1.0.1
+## (2022-02-04)
+
+* Add config.json schema validation [Alex Gonzalez]
+
 # v1.0.0
 ## (2021-05-31)
 

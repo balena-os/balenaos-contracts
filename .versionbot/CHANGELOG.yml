@@ -1,5 +1,19 @@
 - commits:
-    - subject: 'README: Add contract type description'
+    - subject: Add config.json schema validation
+      hash: 72d2fd022f4c966983e01f2260c820ebd207c1fd
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+  version: 1.0.1
+  title: "'Add config.json schema validation'"
+  date: 2022-02-04T13:39:56.968Z
+- commits:
+    - subject: "README: Add contract type description"
       hash: 07eee3c790d30451df33dfb8d6ebd53ee04b9a5c
       body: |
         Add a brief paragraph to describe how to define images.
@@ -10,13 +24,12 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'tegra-gpu: Merge package an image to simplify image definition'
+    - subject: "tegra-gpu: Merge package an image to simplify image definition"
       hash: 0a5d9390c3d89ad8440d368581d3acd78c52744c
       body: >
         When building images we need a recipe list for bitbake, and a package
 
-        list for the package manager. This can both be defined by using
-        different
+        list for the package manager. This can both be defined by using different
 
         types, `sw.recipe.yocto` or `sw.package.yocto` and the sw.package type
 
@@ -28,13 +41,12 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'linux-firmware: Merge package an image to simplify image definition'
+    - subject: "linux-firmware: Merge package an image to simplify image definition"
       hash: 84dc959b11c6bdb1b610b22eaeebca72962f3b8e
       body: >
         When building images we need a recipe list for bitbake, and a package
 
-        list for the package manager. This can both be defined by using
-        different
+        list for the package manager. This can both be defined by using different
 
         types, `sw.recipe.yocto` or `sw.package.yocto` and the sw.package type
 
@@ -49,7 +61,7 @@
   version: 1.0.0
   date: 2021-05-31T08:37:40.244Z
 - commits:
-    - subject: 'versionist: Add repo.yml to make versionist happy'
+    - subject: "versionist: Add repo.yml to make versionist happy"
       hash: 2c51ff998d9082b88daf7710cb502a89752e903d
       body: |
         Flag the project as generic so versionist knows what to do with it.
@@ -60,7 +72,7 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'linux-firmware: Add jetson-tx2 as a supported device'
+    - subject: "linux-firmware: Add jetson-tx2 as a supported device"
       hash: 842806bebc0d2c1e98803200cbc3b7e1bf6e5e84
       body: |
         Add the jetson-tx2 to the list of supported devices.
@@ -85,7 +97,7 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'sw.os: Add BalenaOS contract'
+    - subject: "sw.os: Add BalenaOS contract"
       hash: 1ec5b560bb9d96a265ca16c279d697162ffea0ad
       body: |
         This defines external requirements to operate with BalenaOS.
@@ -96,7 +108,7 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'sw.image: Add tegra GPU block'
+    - subject: "sw.image: Add tegra GPU block"
       hash: 81afbf6439530c6d832ce023be0f53d585719c1d
       body: |
         This blocks adds an image to support the GPU available on Tegra CPUs.
@@ -107,7 +119,7 @@
         signed-off-by: Alex Gonzalez <alexg@balena.io>
       author: Alex Gonzalez
       nested: []
-    - subject: 'sw.package: Introduce the tegra-libraries package'
+    - subject: "sw.package: Introduce the tegra-libraries package"
       hash: 89c2fc283f85a03a268f955e1785817d571b734d
       body: |
         A package is a composed of a list of packages and provides specific
