@@ -1,0 +1,51 @@
+{
+  "apiEndpoint": "https://api.balena-staging.com",
+  "appUpdatePollInterval": 900000,
+  "applicationId": 135479,
+  "deltaEndpoint": "https://delta.balena-staging.com",
+  "developmentMode": true,
+  "apiKey": "3832bb7390c25e7bd1cc2deb2fd46f75",
+  "deviceArch": "aarch64",
+  "deviceId": 433565,
+  "deviceType": "raspberrypi4-64",
+  "initialDeviceName": "raspberrypi4-64",
+  "listenPort": 48484,
+  "localMode": true,
+  "mixpanelToken": "cb974f32bab01ecc1171937026774b18",
+  "persistentLogging": false,
+  "registered_at": 1642084249017,
+  "registryEndpoint": "registry2.balena-staging.com",
+  "userId": 2249,
+  "uuid": "9d3119c03fb756d4eec9140571b95654",
+  "vpnEndpoint": "vpn.balena-staging.com",
+  "vpnPort": 443,
+  "os": {
+    "udevRules": {
+      "56": "ENV{ID_FS_LABEL_ENC}==\"resin-root*\", IMPORT{program}=\"resin_update_state_probe $devnode\", SYMLINK+=\"disk/by-state/$env{BALENA_UPDATE_STATE}\"",
+      "64" : "ACTION!=\"add|change\", GOTO=\"modeswitch_rules_end\"\nKERNEL==\"ttyACM*\", ATTRS{idVendor}==\"1546\", ATTRS{idProduct}==\"1146\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"u-blox-switch@'%E{DEVNAME}'.service\"\nLBEL=\"modeswitch_rules_end\"\n"
+    },
+    "sshKeys": [
+      "ssh-rsa AAAAB3Nza...M2JB balena@macbook-pro",
+      "ssh-rsa AAAAB3Nza...nFTQ balena@zenbook"
+    ],
+    "network": {
+      "connectivity": {
+        "uri" : "https://api.balena-cloud.com/connectivity-check",
+        "interval" : 300,
+        "response": "NetworkManager is online"
+      }
+    }
+  },
+  "hostname": "example",
+  "instantUpdates": false,
+  "botstrapRetryDelay": 30000,
+  "persistentLogging": false,
+  "deviceApiKey": "3832bb7390c25e7bd1cc2deb2fd46f75",
+  "deviceApiKeys": {
+    "api.balena-staging.com": "3832bb7390c25e7bd1cc2deb2fd46f75",
+    "api2.balena-staging.com": "3832bb7390c25e7bd1cc2deb2fd46f75"
+  },
+  "ntpServers": "0.resinio.pool.ntp.org 1.resinio.pool.ntp.org 2.resinio.pool.ntp.org 3.resinio.pool.ntp.org",
+  "dnsServers": "2.2.2.2 1.1.1.1",
+  "appUpdatePollInterval": 300
+}

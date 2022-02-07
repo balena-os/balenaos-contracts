@@ -1,0 +1,292 @@
+{
+	"$id": "http://www.balena.io/os/schemas/configuration.json",
+	"title": "BalenaOS configuration",
+	"description": "Schema for balenaOS config.json validation",
+	"type": "object",
+	"properties": {
+		"comment": {
+			"type": "string",
+			"description": "Read-only state consumed during device provisioning"
+		},
+		"deviceId": {
+			"title": "ID for the device in the cloud fleet",
+			"description": "Used by balena-device-register for initial provisioning.",
+			"type": "integer",
+			"readOnly": "true",
+			"minimum": 0
+		},
+		"deviceArch": {
+			"title": "Device architecture",
+			"description": "Currently unused. The supervisor has an implicit architecture so it does not need this.",
+			"readOnly": "true",
+			"enum": ["aarch64", "armv5", "armv6", "armv7a", "armv7ve",  "x86-64", "x86", "intel-quark", "unknown"]
+		},
+		"deviceType": {
+			"title": "Device type, must be supported by the fleet",
+			"descriptioin": "Used by the supervisor and balena-device-register on initial provisioning",
+			"readOnly": "true",
+			"type": "string"
+		},
+		"initialDeviceName": {
+			"title": "Define a device name used when provisioning",
+			"description": "Used by the supervisor on provisioning",
+			"readOnly": "true",
+			"type": "string"
+		},
+		"apiKey": {
+			"title": "Initial cloud provisioning API key",
+			"description": "Used by balena-device-register on initial provisioning",
+			"type": "string",
+			"pattern": "[a-z0-9]*",
+			"minLength" : 32,
+			"maxLength" : 32,
+			"readOnly": "true"
+		},
+		"uuid": {
+			"title": "Device unique identifier",
+			"description": "Used on balena-device-register on provisioning, API communications and VPN setup",
+			"type": "string",
+			"pattern": "[a-z0-9]*",
+			"minLength" : 32,
+			"maxLength" : 32,
+			"readOnly": "true"
+		},
+		"apiEndpoint": {
+			"title": "Balena API URI",
+			"description": "Used on balena-device-register on provisioning and API communications",
+			"readOnly": "true",
+			"type": "string",
+			"pattern": "^(https://)?api.*"
+		},
+		"deltaEndpoint": {
+			"title": "Balena delta API endpoint URI",
+			"description": "Used on engine startup as configuration",
+			"readOnly": "true",
+			"type": "string",
+			"pattern": "^(https://)?delta.*"
+		},
+		"registryEndpoint": {
+			"title": "Balena registry API endpoint URI",
+			"description": "UNUSED",
+			"readOnly": "true",
+			"type": "string",
+			"pattern": "^(https://)?registry2.*"
+		},
+		"applicationID": {
+			"title": "Balena cloud instance fleet ID",
+			"description": "Used on balena-device-register on provisioning",
+			"type": "integer",
+			"readOnly": "true",
+			"minimum": 0
+		},
+		"registered_at": {
+			"title": "Time of registration in seconds since the epoch",
+			"description": "Used on balena-device-register on provisioning",
+			"type": "integer",
+			"readOnly": "true",
+			"minimum": 0
+		},
+		"mixpanelToken": {
+			"title": "Mixpanel token for event reporting",
+			"description": "Used on supervisor startup as configuration",
+			"type": "string",
+			"pattern": "[a-z0-9]*",
+			"minLength" : 32,
+			"maxLength" : 32,
+			"readOnly": "true"
+		},
+
+		"comment": {
+			"type": "string",
+			"title": "Configuration where the device value is the source of truth"
+		},
+		"os": {
+			"type": "object",
+			"title": "Operating system configuration",
+			"properties": {
+				"udevRules": {
+					"title": "Custom udev rules pairs",
+					"description": "To turn a rule into the required format, `cat rulefilename | jq -sR .`",
+					"examples": {
+						"os": {
+							"udevRules": {
+								"56": "ENV{ID_FS_LABEL_ENC}==\"resin-root*\", IMPORT{program}=\"resin_update_state_probe $devnode\", SYMLINK+=\"disk/by-state/$env{BALENA_UPDATE_STATE}\"",
+								"64" : "ACTION!=\"add|change\", GOTO=\"modeswitch_rules_end\"\nKERNEL==\"ttyACM*\", ATTRS{idVendor}==\"1546\", ATTRS{idProduct}==\"1146\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"u-blox-switch@'%E{DEVNAME}'.service\"\nLBEL=\"modeswitch_rules_end\"\n"
+							}
+						}
+					},
+					"type": "object",
+					"patternProperties" : {
+						"[0-9]*": { "type": "string" }
+					}
+				},
+				"sshKeys": {
+					"title": "Public SSH keys used for SSH server authentication",
+					"description": "An array of strings containing a list of public SSH keys used for SSH server authentication.",
+					"examples": {
+						"os": {
+							"sshKeys": [
+								"ssh-rsa AAAAB3Nza...M2JB balena@macbook-pro",
+								"ssh-rsa AAAAB3Nza...nFTQ balena@zenbook"
+							]
+						}
+					},
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"network": {
+					"type": "object",
+					"properties": {
+						"wifi": {
+							"randomMacAddressScan": {
+								"title": "MAC address randomization",
+								"description": "Enabled MAC address randomization of Wifi devices during scanning",
+								"type": "boolean"
+							}
+						},
+						"connectivity": {
+							"examples": {
+								"os": {
+									"network" : {
+										"connectivity": {
+											"uri" : "https://api.balena-cloud.com/connectivity-check",
+											"interval" : "300"
+										}
+									}
+								}
+							},
+							"type": "object",
+							"properties": {
+								"uri": {
+									"title": "Network connectivity check URL",
+									"description": "URL to query for network connectivity checks. Defaults to `$API_ENDPOINT/connectivity-check`. This URL should return the `X-NetworkManager-Status` header with a value of `online`",
+									"type": "string",
+									"pattern": "^(https://)?.*"
+								},
+								"interval": {
+									"title": "Network connectivity check interval in seconds",
+									"description": "Network connectivity check interval in seconds. The default is 300s and 0 disables it.",
+									"type": "integer",
+									"minimum": 0
+								},
+								"response": {
+									"title": "Expected HTTP body response from the connectivity server. If missing, the default is `NetworkManager is online`. If empty, the server is expected to answer with status code 204 or send no data.",
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"comment": {
+			"type": "string",
+			"description": "Configuration values where the cloud is the source of truth"
+		},
+		"hostname": {
+			"title": "Configured hostname of the device. If empty, the UUID will be used.",
+			"description": "Used by balena-hostname to set the system's hostname",
+			"type": "string"
+		},
+		"appUpdatePollInterval": {
+			"title": "Supervisor cloud polling interval in minutes, defauls to 60000. Should be moved to supervisor database.",
+			"description": "Used by the supervidor. TBC whether it could go into db.",
+			"type": "integer",
+			"minimum": 0
+		},
+		"instantUpdates": {
+			"title": "If disabled the supervisor will ignore instant update requests on the `v1/update` endpoint, defaults to true",
+			"description": "UNUSED",
+			"type": "boolean"
+		},
+		"bootstrapRetryDelay": {
+			"title": "Delay to retry provisioning, defaults to 30000",
+			"description": "Used by the supervisor.",
+			"type": "integer",
+			"minimum": 0
+		},
+		"persistentLogging": {
+			"title": "Enable or disable persistent logging on the device.",
+			"description": "Defaults to false. Once enabled, they are stored in the device's data partition, located in `/var/log/journal/<uuid>`, where 'uuid' is the device's unique identifier.",
+			"type": "boolean"
+		},
+		"deviceApiKey": {
+			"title": "API token key",
+			"description": "Used by device registration and VPN setup",
+			"type": "string",
+			"pattern": "[a-z0-9]*",
+			"minLength" : 32,
+			"maxLength" : 32,
+			"readOnly": "true"
+		},
+		"deviceApiKeys": {
+			"title": "API token keys array",
+			"description": "Internal state used by os-config. Should move out of config.json into state or supervisor",
+			"type": "object",
+			"patternProperties": {
+				"^(https://)?api.*" : { "type": "string", "pattern": "[a-z0-9]*", "minLength": 32, "maxLength": 32 }
+			}
+		},
+		"ntpServers": {
+			"title": "Network Time Protocol servers",
+			"description": "Space separated list of NTP server URLs used for time symchornization. Defaults to four `resinio.pool.ntp.org` servers",
+			"type": "string"
+		},
+		"dnsServers": {
+			"title": "Domain Name Servers",
+			"description": "Space separated list of DNS servers addresses used for name resolutioni to add to those obtained via DHCP or available in a NetworkManager connection profile. If not defined or empty, Google DNS server is used (8.8.8.8). If set to 'null', no default servers are added.",
+			"type": "string"
+		},
+		"balenaRootCA": {
+			"title": "CA certificate",
+			"description": "Base64 encoded PEM CA certificate to install into the device's root trust store. It makes the device trust TSL/SSL certificated from this authority. Useful when behind a re-encrypting network device like a transparent proxy or deep packet inspection device.",
+			"type": "string"
+		},
+		"apiTimeout": {
+			"title": "Timeout for the local supervisor API in seconds",
+			"description": "Used by the supervisor, TBC could it be stored in db.",
+			"type": "integer",
+			"minimum": 0
+		},
+		"developmentMode": {
+			"title": "Enable / disable development mode",
+			"description": "Development mode enables unauthenticated SSH logins unles custom SSH keys are present, as well as enabling serial console passwordless login and exposing the engine socket externally.",
+			"type": "boolean"
+		},
+		"localMode": {
+			"title": "Enable / disable local development mode for on device application development",
+			"description": "For future use as initial default, currently unused.",
+			"type": "boolean"
+		},
+		"vpnEndpoint": {
+			"title": "Balena VPN API endpoint URI",
+			"description": "UNUSED",
+			"type": "string",
+			"pattern": "^(https://)?vpn.*",
+			"readOnly": "true"
+		},
+		"vpnPort": {
+			"title": "Port used for the VPN tunnel.",
+			"description": "UNUSED",
+			"type": "integer",
+			"minimum": 1,
+			"default": 443,
+			"maximum": 65535
+		},
+		"country": {
+			"title": "The country the device is operating on, used for setting the WiFi regulatory domain.",
+			"description": "ISO/IEC 3166-1 alpha2 country code to set the initial regulatory domain setting for IEEE 802.11 devices",
+			"enum": ["AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "CV", "KH", "CM", "CA", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CD", "CG", "CK", "CR", "HR", "CU", "CW", "CY", "CZ", "CI", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "MK", "RO", "RU", "RW", "RE", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "UM", "US", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW", "AX"]
+		},
+		"listenPort": {
+			"title": "Local port for the supervisor API to listen on",
+			"description": "Used on supervisor startup as configuration",
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 65535
+		}
+	}
+}
