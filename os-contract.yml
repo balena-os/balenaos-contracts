@@ -1,0 +1,19 @@
+name: balenaOS
+slug: balena-os
+type: sw.os
+description: >-
+  A host OS tailored for containers, designed for reliability, proven in
+  production.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balena-os/meta-balena'
+  configurationSchema:
+    type: blob.asset
+    data:
+      url: >-
+        s3:///config.schema
+data: >-
+  ## Nothing yet
+version: 3.0.0

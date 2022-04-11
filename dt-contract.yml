@@ -1,0 +1,42 @@
+name: balenaOS for Balena Fin
+type: hw.device-type+sw.os
+description: >-
+  Specialization of balenaOS to run in a Balena Fin device type.
+provides:
+  - type: sw.os
+    slug: balena-os
+  - type: hw.device-type
+    slug: fincm3
+composedOf: [ 'fincm3', 'balena-os']
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balena-os/balena-raspberrypi'
+  buildManifest:
+    type: blob.asset
+    data:
+      url: >-
+        s3:///balena-image.manifest
+  rawImage:
+    type: blob.asset
+    data:
+      url: >-
+        s3:///balena-image.zip
+  flasherImage:
+    type: blob.asset
+    data:
+      url: >-
+        s3:///balena-image-flasher.zip
+partials:
+  - downloadImage: >-
+    ## how to download image
+  - connectDevice: >-
+    ## how to connnect device
+  - writeImage: >-
+    ## how to write image
+  - disconnectDevice: >-
+    ## how to disconnect device
+  - bootDevice: >-
+    ## how to boot device
+version: 3.0.0
