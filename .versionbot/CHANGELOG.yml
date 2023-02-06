@@ -1,4 +1,29 @@
 - commits:
+    - subject: "workflows: add flowzone"
+      hash: 36447d4605e950f4566dfb13e772c686da21d650
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+    - subject: "config-schema: add installer object w/ secureboot"
+      hash: fd7c8b583a69742c632e3a5621c02ab0a63cad3a
+      body: |
+        Document secureboot flag used by installer.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Joseph Kogut <joseph@balena.io>
+        signed-off-by: Joseph Kogut <joseph@balena.io>
+      author: Joseph Kogut
+      nested: []
+  version: 1.0.2
+  title: ""
+  date: 2023-02-06T19:26:19.012Z
+- commits:
     - subject: Add config.json schema validation
       hash: 72d2fd022f4c966983e01f2260c820ebd207c1fd
       body: ""
@@ -134,8 +159,7 @@
     - subject: Introduce block images
       hash: b76a842bb9018e5f26000b2deb28ea3a317bf4a7
       body: >
-        A block is an app component that serves no function by itself. A block
-        is
+        A block is an app component that serves no function by itself. A block is
 
         formed of one or more images, which can be classified with:
 

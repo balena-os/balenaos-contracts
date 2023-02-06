@@ -4,6 +4,12 @@ Change log
 # v0.0.2
 ## (2021-05-27)
 
+# v1.0.2
+## (2023-02-06)
+
+* workflows: add flowzone [Alex Gonzalez]
+* config-schema: add installer object w/ secureboot [Joseph Kogut]
+
 # v1.0.1
 ## (2022-02-04)
 
