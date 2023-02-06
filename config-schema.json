@@ -100,6 +100,22 @@
 			"type": "string",
 			"title": "Configuration where the device value is the source of truth"
 		},
+		"installer": {
+			"type": "object",
+			"title": "Installer configuration",
+			"properties": {
+				"secureboot": {
+					"title": "Secure boot",
+					"description": "Enable secure boot and full-disk encryption during installation",
+					"examples": {
+						"installer": {
+							"secureboot": true
+						}
+					},
+					"type": "boolean"
+				}
+			}
+		},
 		"os": {
 			"type": "object",
 			"title": "Operating system configuration",
