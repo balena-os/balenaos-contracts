@@ -113,6 +113,24 @@
 						}
 					},
 					"type": "boolean"
+				},
+				"migrate": {
+					"type": "object",
+					"title": "Migration control",
+					"properties": {
+						"force": {
+							"type": "boolean",
+							"title": "Force migration",
+							"description": "Force installer to use migration module",
+							"examples": {
+								"installer": {
+									"migrate": {
+										"force": true
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		},
