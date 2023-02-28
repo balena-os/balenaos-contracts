@@ -1,4 +1,18 @@
 - commits:
+    - subject: "config-schema: add migrate settings"
+      hash: da1bc06bd9b77ba3c8489ac4f4bb37925097cc8c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Alex Gonzalez <alexg@balena.io>
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+      author: Alex Gonzalez
+      nested: []
+  version: 1.0.3
+  title: ""
+  date: 2023-02-28T08:52:44.763Z
+- commits:
     - subject: "workflows: add flowzone"
       hash: 36447d4605e950f4566dfb13e772c686da21d650
       body: ""

@@ -4,6 +4,11 @@ Change log
 # v0.0.2
 ## (2021-05-27)
 
+# v1.0.3
+## (2023-02-28)
+
+* config-schema: add migrate settings [Alex Gonzalez]
+
 # v1.0.2
 ## (2023-02-06)
 
